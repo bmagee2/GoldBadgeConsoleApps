@@ -14,7 +14,7 @@ namespace ChallengeOne_Repository
 
         // CONSTRUCTORS
         public Menu() { }
-        public Menu(int itemNumber, string itemName, string itemDescription, decimal itemPrice) // LIST OF INGREDIENTS)
+        public Menu(int itemNumber, string itemName, string itemDescription, double itemPrice) // LIST OF INGREDIENTS)
         {
             ItemNumber = itemNumber;
             ItemName = itemName;
@@ -27,7 +27,7 @@ namespace ChallengeOne_Repository
         public int ItemNumber { get; set; } // NO SETTER FOR ITEM NUMBER?
         public string ItemName { get; set; }
         public string ItemDescription { get; set; }
-        public decimal ItemPrice { get; set; }
+        public double ItemPrice { get; set; }
         // LIST OF INGREDIENTS -- how to set up a List property or field?
         //public List<Ingredients> ListOfIngredients { get; set; }
         //public string _goatName;

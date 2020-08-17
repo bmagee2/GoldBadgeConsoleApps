@@ -15,23 +15,23 @@ namespace ChallengeOne_Repository
         private List<Menu> _listOfMenuItems = new List<Menu>();
 
         // CREATE -- add menu item
-        public void AddMenuItem(Menu menuItem)
+        public void AddNewMenuItem(Menu menuItem)
         {
             _listOfMenuItems.Add(menuItem);
         }
 
         // READ -- GET all items in the menu list
-        public List<Menu> GetMenuItems()
+        public List<Menu> GetAllMenuItems()
         {
             return _listOfMenuItems;
         }
 
-        // READ/GET -- GET menu item by name (to delete)
+        // READ/GET -- GET menu item by name 
         public Menu GetMenuItemByName(string menuItemName)
         {
             foreach (Menu item in _listOfMenuItems)
             {
-                if (item.ItemName == menuItemName)
+                if (item.ItemName.ToLower() == menuItemName.ToLower())
                 {
                     return item;
                 }

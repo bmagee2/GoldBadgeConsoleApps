@@ -16,6 +16,7 @@ namespace ChallengeOne_Console
         // starts app
         public void Start()
         {
+            SeedMenuItems();
             UserOptions();
         }
 
@@ -26,10 +27,11 @@ namespace ChallengeOne_Console
             {
                 // Display user options
                 Console.WriteLine("Select option:\n" +
-                    "1. Get\n" +
-                    "2. Add\n" +
-                    "3. Delete\n" +
-                    "4. Exit");
+                    "1. Get all menu items\n" +
+                    "2. Get item by name\n" +
+                    "3. Add new item\n" +
+                    "4. Delete item\n" +
+                    "5. Exit");
 
                 // Get user input
                 string input = Console.ReadLine();
@@ -38,27 +40,34 @@ namespace ChallengeOne_Console
                 switch (input)
                 {
                     case "1":
-                        // Get
-                        GetMenuItems();
+                        // Get all items
+                        DisplayAllMenuItems();
                         Console.WriteLine("Press any key to continue");
                         Console.ReadKey();
                         Console.Clear();
                         break;
                     case "2":
+                        // Get one item by name
+                        DisplayMenuItemByName();
+                        Console.WriteLine("Press any key to continue");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    case "3":
                         // Add
                         AddNewMenuItem();
                         Console.WriteLine("Press any key to continue");
                         Console.ReadKey();
                         Console.Clear();
                         break;
-                    case "3":
+                    case "4":
                         // Delete
                         DeleteMenuItem();
                         Console.WriteLine("Press any key to continue");
                         Console.ReadKey();
                         Console.Clear();
                         break;
-                    case "4":
+                    case "5":
                         // Exit
                         Console.WriteLine("bitch, bye");
                         Console.WriteLine("Press any key to exit");
@@ -76,10 +85,44 @@ namespace ChallengeOne_Console
             }
         }
 
-        // GET ALL MENU ITEMS
-        private void GetMenuItems()
+        // DISPLAY ALL MENU ITEMS
+        private void DisplayAllMenuItems()
         {
+            Console.Clear();
+            List<Menu> listOfMenuItems = _menuRepo.GetAllMenuItems();
 
+            foreach (Menu item in listOfMenuItems)
+            {
+                Console.WriteLine($"Item Number: {item.ItemNumber}\n" +
+                    $"Item Name: {item.ItemName}\n" +
+                    $"Item Description: {item.ItemDescription}\n" +
+                    $"Item Price: ${item.ItemPrice}");
+            }
+        }
+
+        // DISPLAY MENU ITEM BY NAME
+        private void DisplayMenuItemByName()
+        {
+            Console.Clear();
+            // Get name 
+            Console.WriteLine("Enter name of item: ");
+            string item = Console.ReadLine();
+
+            // Find item & save
+            Menu menuItem = _menuRepo.GetMenuItemByName(item);
+
+            // Display item (if not null)
+            if (menuItem != null)
+            {
+                Console.WriteLine($"Item Number: {menuItem.ItemNumber}\n" +
+                    $"Item Name: {menuItem.ItemName}\n" +
+                    $"Item Description: {menuItem.ItemDescription}\n" +
+                    $"Item Price: ${menuItem.ItemPrice}");
+            }
+            else
+            {
+                Console.WriteLine("that's not a menu item");
+            }
         }
 
         // ADD MENU ITEM
@@ -106,20 +149,48 @@ namespace ChallengeOne_Console
             // Item Price
             Console.WriteLine("Item price: $");
             string itemPrice = Console.ReadLine();
-            newMenuItem.ItemPrice = decimal.Parse(itemPrice);
+            newMenuItem.ItemPrice = double.Parse(itemPrice);
 
             // LIST OF INGREDIENTS
             //Console.WriteLine("List item ingredient: ");
             // add a list of strings?
             // Casting? -- create method video @ 12mins
 
-            _menuRepo.AddMenuItem(newMenuItem);     // adds new item to _menuRepo
+            _menuRepo.AddNewMenuItem(newMenuItem);     // adds new item to _menuRepo
         }
 
         // DELETE MENU ITEM
         private void DeleteMenuItem()
         {
+            DisplayAllMenuItems();
+            // Get item
+            Console.WriteLine("Enter name of item you'd like to delete: ");
+            string selection = Console.ReadLine();
+            // Delete item
+            bool wasDeleted = _menuRepo.DeleteMenuItem(selection);
+            // Was or Wasn't deleted
+            if (wasDeleted)
+            {
+                Console.WriteLine("Item was deleted");
+            }
+            else
+            {
+                Console.WriteLine("Item was not deleted");
+            }
 
+        }
+
+
+        // SEED MENU ITEMS -- needs LIST OF INGREDIENTS
+        private void SeedMenuItems()
+        {
+            Menu cheeseSandwich = new Menu(3, "Cheese Sandwich", "Bread and choice of cheese", 4.00);  
+            Menu chocolateChipCookie = new Menu(4, "Chocolate Chip Cookie", "Homemade chocolate chip cookie", 2.00);
+            Menu croissant = new Menu(6, "Croissant", "French pastry", 3.00);
+
+            _menuRepo.AddNewMenuItem(cheeseSandwich);
+            _menuRepo.AddNewMenuItem(chocolateChipCookie);
+            _menuRepo.AddNewMenuItem(croissant);
         }
 
     }
