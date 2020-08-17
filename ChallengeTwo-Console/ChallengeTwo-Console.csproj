@@ -7,7 +7,7 @@
     <ProjectGuid>{9FA29F8C-CE01-4B8A-98DB-4D3B75E2CC0D}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>ChallengeTwo_Console</RootNamespace>
-    <AssemblyName>ChallengeTwo_Console</AssemblyName>
+    <AssemblyName>ChallengeTwo-Console</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
