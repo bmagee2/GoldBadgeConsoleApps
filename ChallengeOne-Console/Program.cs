@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChallengeOne_Console
 {
+    // single responsibility of Main method -- starts app 
     class Program
     {
         static void Main(string[] args)

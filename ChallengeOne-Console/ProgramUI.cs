@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChallengeOne_Console
 {
+    // single responsibility of ProgramUI class -- run all ProgramUI methods
     class ProgramUI
     {
         // starts app
