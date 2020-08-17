@@ -12,7 +12,9 @@ namespace ChallengeOne_Console
     {
         // Field -- calling MenuRepository and Adding to list; _menuRepo exists in entire ProgramUI instance
         private MenuRepository _menuRepo = new MenuRepository();
-       
+
+        //List<string> ingredients = new List<string>;
+        
         // starts app
         public void Start()
         {
@@ -184,7 +186,7 @@ namespace ChallengeOne_Console
         // SEED MENU ITEMS -- needs LIST OF INGREDIENTS
         private void SeedMenuItems()
         {
-            Menu cheeseSandwich = new Menu(3, "Cheese Sandwich", "Bread and choice of cheese", 4.00);  
+            Menu cheeseSandwich = new Menu(3, "Cheese Sandwich", "Bread and choice of cheese", 4.00);
             Menu chocolateChipCookie = new Menu(4, "Chocolate Chip Cookie", "Homemade chocolate chip cookie", 2.00);
             Menu croissant = new Menu(6, "Croissant", "French pastry", 3.00);
 

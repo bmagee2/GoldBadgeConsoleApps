@@ -10,17 +10,20 @@ namespace ChallengeOne_Repository
     // test change
     public class Menu
     {
+        //private string _listOfIngredients;
         // Menu Class with properties, constructors, and fields
 
         // CONSTRUCTORS
         public Menu() { }
-        public Menu(int itemNumber, string itemName, string itemDescription, double itemPrice) // LIST OF INGREDIENTS)
+        public Menu(int itemNumber, string itemName, string itemDescription, double itemPrice)
+            // List<ListOfIngredients> listOfIngredients
+            //List<string> listOfIngredients)
         {
             ItemNumber = itemNumber;
             ItemName = itemName;
             ItemDescription = itemDescription;
             ItemPrice = itemPrice;
-            // LIST OF INGREDIENTS
+            //ListOfIngredients = listOfIngredients;
         }
 
         // PROPERTIES -- of menu items -- number (int), name (string), description (string), list of ingredients (list or enum?), price (decimal)
@@ -29,7 +32,16 @@ namespace ChallengeOne_Repository
         public string ItemDescription { get; set; }
         public double ItemPrice { get; set; }
         // LIST OF INGREDIENTS -- how to set up a List property or field?
-        //public List<Ingredients> ListOfIngredients { get; set; }
-        //public string _goatName;
+        public List<string> ListOfIngredients { get; set; }
+        //public List<ListOfIngredients> ListOfIngredients { get; set; }
+
+       
     }
+
+    //public class ListOfIngredients {}
+    
+
+    
+    //public List<_listOfIn> { };
+
 }
