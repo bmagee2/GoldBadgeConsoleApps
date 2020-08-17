@@ -10,6 +10,8 @@ namespace ChallengeOne_Console
     {
         static void Main(string[] args)
         {
+            ProgramUI run = new ProgramUI();
+            run.Start();
         }
     }
 }

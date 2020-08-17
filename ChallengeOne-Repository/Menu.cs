@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChallengeOne_Repository
 {
+    // POCO -- single responsiblity object that holds data
     public class Menu
     {
         // Menu Class with properties, constructors, and fields

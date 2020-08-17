@@ -8,5 +8,10 @@ namespace ChallengeOne_Console
 {
     class ProgramUI
     {
+        // starts app
+        public void Start()
+        {
+
+        }
     }
 }
