@@ -9,7 +9,7 @@ namespace ChallengeOne_Repository
     // Repo -- manipulator & holder of data (menu items)
     // CRUD -- don't need to be able to update items
     // test edit
-    class MenuRepository
+    public class MenuRepository
     {
         // FIELD -- class level variable that can be used everywhere (in every CRUD method)
         private List<Menu> _listOfMenuItems = new List<Menu>();

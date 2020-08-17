@@ -50,5 +50,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChallengeOne-Repository\ChallengeOne-Repository.csproj">
+      <Project>{0dc8a636-8859-49e4-9f4a-598ad49c6a8b}</Project>
+      <Name>ChallengeOne-Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

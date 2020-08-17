@@ -24,7 +24,7 @@ namespace ChallengeOne_Repository
         }
 
         // PROPERTIES -- of menu items -- number (int), name (string), description (string), list of ingredients (list or enum?), price (decimal)
-        public int ItemNumber { get; set; }
+        public int ItemNumber { get; set; } // NO SETTER FOR ITEM NUMBER?
         public string ItemName { get; set; }
         public string ItemDescription { get; set; }
         public decimal ItemPrice { get; set; }
