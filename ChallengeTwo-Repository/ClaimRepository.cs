@@ -29,9 +29,10 @@ namespace ChallengeTwo_Repository
             return _listOfClaims;
         }
 
-        // GET -- get next claim
-
-        // GET -- one claim by ID
+        // GET -- get next claim -- by ID(int)?
+        string claimType = Console.ReadLine();
+        int claimTypeSelection = int.Parse(claimType);
+        newClaim.TypeOfClaim = (ClaimType) claimTypeSelection;
         public Claim GetClaimByIdNumber(int claimIdNumber)
         {
             foreach (Claim claim in _listOfClaims)
@@ -50,7 +51,7 @@ namespace ChallengeTwo_Repository
         public void UpdateExistingClaim(int originalClaim, Claim newClaim)
         {
             // Find original claim
-            Claim oldClaim = GetClaimByIdNumber(originalClaim);
+            Claim oldClaim = GetClaimByIdNumber(originalClaim); // need to change to originalClaim to string?
 
             // Update claim
             if (oldClaim != null)

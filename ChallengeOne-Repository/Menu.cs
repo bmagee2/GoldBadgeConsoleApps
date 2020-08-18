@@ -15,7 +15,7 @@ namespace ChallengeOne_Repository
 
         // CONSTRUCTORS
         public Menu() { }
-        public Menu(int itemNumber, string itemName, string itemDescription, double itemPrice)
+        public Menu(int itemNumber, string itemName, string itemDescription, double itemPrice, string itemIngredients)
         // List<Ingredients> listOfIngredients
         //List<string> listOfIngredients)
         {
@@ -23,6 +23,7 @@ namespace ChallengeOne_Repository
             ItemName = itemName;
             ItemDescription = itemDescription;
             ItemPrice = itemPrice;
+            ItemIngredients = itemIngredients;
             //ListOfIngredients = listOfIngredients;
         }
 
@@ -31,6 +32,7 @@ namespace ChallengeOne_Repository
         public string ItemName { get; set; }
         public string ItemDescription { get; set; }
         public double ItemPrice { get; set; }
+        public string ItemIngredients { get; set; }
         // LIST OF INGREDIENTS -- how to set up a List property or field?
         //public List<string> ListOfIngredients { get; set; }
         //public List<Ingredients> ListOfIngredients { get; set; }

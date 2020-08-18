@@ -26,7 +26,7 @@ namespace ChallengeTwo_Console
                 // Main Menu
                 Console.WriteLine("Select option:\n" +
                     "1. Get all claims\n" +
-                    "2. Get next claim\n" +
+                    "2. Take care of next claim\n" +
                     "3. Add new claim\n" +
                     "4. Update existing claim\n" +
                     "5. Exit");
@@ -53,14 +53,14 @@ namespace ChallengeTwo_Console
                         break;
                     case "3":
                         // Add new claim
-                       
+                        AddNewClaim();
                         Console.WriteLine("Press any key to continue");
                         Console.ReadKey();
                         Console.Clear();
                         break;
                     case "4":
                         // Update existing claim
-                        
+                        UpdateExistingClaim();
                         Console.WriteLine("Press any key to continue");
                         Console.ReadKey();
                         Console.Clear();
@@ -125,7 +125,72 @@ namespace ChallengeTwo_Console
 
             // DESCRIPTION
             Console.WriteLine("Claim description:");
-            string claimDescription = Console.ReadLine();
+            newClaim.ClaimDescription = Console.ReadLine().ToLower();
+
+            // AMOUNT
+            Console.WriteLine("Claim amount:");
+            string claimAmount = Console.ReadLine();
+            newClaim.ClaimAmount = double.Parse(claimAmount);
+
+            // DATE OF INCIDENT
+            Console.WriteLine("Date of incident:");
+
+            // DATE OF CLAIM
+            Console.WriteLine("Date of claim:");
+
+            // IS VALID?
+            Console.WriteLine("Is the claim valid(True/False)?:");
+            string isClaimValid = Console.ReadLine().ToLower();
+
+            if (isClaimValid == "true")
+            {
+                newClaim.ClaimIsValid = true;
+            }
+            else
+            {
+                newClaim.ClaimIsValid = false;
+            }
+
+            _claimRepo.AddNewClaim(newClaim);   // adds new item to _claimRepo
+        }
+
+
+        // 4. UPDATE CLAIM
+        private void UpdateExistingClaim()
+        {
+            // Reference to ClaimRepository
+            Claim newClaim = new Claim();
+
+            // Display all claims
+            DisplayAllClaims();
+
+            // User input- get claim by ID
+            Console.WriteLine("Enter claim ID to update:");
+
+            // Get claim
+            string oldClaim = Console.ReadLine();
+            newClaim.ClaimId = int.Parse(oldClaim); // parsed int to string
+
+            // Update = AddNewClaim()
+            // ID
+            Console.WriteLine("Claim Id:");
+            string claimId = Console.ReadLine();
+            newClaim.ClaimId = int.Parse(claimId);
+
+            // TYPE
+            Console.WriteLine("Claim type:\n" +
+                "1. Car\n" +
+                "2. Home\n" +
+                "3. Theft");
+
+            string claimType = Console.ReadLine();
+            int claimTypeSelection = int.Parse(claimType);
+            newClaim.TypeOfClaim = (ClaimType)claimTypeSelection;
+
+
+            // DESCRIPTION
+            Console.WriteLine("Claim description:");
+            newClaim.ClaimDescription = Console.ReadLine().ToLower();
 
             // AMOUNT
             Console.WriteLine("Claim amount:");
@@ -150,29 +215,8 @@ namespace ChallengeTwo_Console
             {
                 newClaim.ClaimIsValid = false;
             }
-        }
-
-
-        // 4. UPDATE CLAIM
-        private void UpdateExistingClaim()
-        {
-            // Reference to ClaimRepository
-            Claim newClaim = new Claim();
-
-            // Display all claims
-            DisplayAllClaims();
-
-            // User input- get claim by ID
-            Console.WriteLine("Enter claim ID to update:");
-
-            // Get claim
-            //string itemNumber = Console.ReadLine();
-            //newMenuItem.ItemNumber = int.Parse(itemNumber);
-            string oldClaim = Console.ReadLine();
-            newClaim.ClaimId = int.Parse(oldClaim);
-
-            // Update = AddNewClaim
-
+                                
+            //_claimRepo.UpdateExistingClaim(, newClaim); // need oldClaim
         }
 
 

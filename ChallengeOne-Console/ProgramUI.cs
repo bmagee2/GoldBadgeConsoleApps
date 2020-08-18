@@ -98,7 +98,8 @@ namespace ChallengeOne_Console
                 Console.WriteLine($"Item Number: {item.ItemNumber}\n" +
                     $"Item Name: {item.ItemName}\n" +
                     $"Item Description: {item.ItemDescription}\n" +
-                    $"Item Price: ${item.ItemPrice}");
+                    $"Item Price: ${item.ItemPrice}\n" +
+                    $"Item Ingredients: {item.ItemIngredients}");
             }
         }
 
@@ -119,7 +120,8 @@ namespace ChallengeOne_Console
                 Console.WriteLine($"Item Number: {menuItem.ItemNumber}\n" +
                     $"Item Name: {menuItem.ItemName}\n" +
                     $"Item Description: {menuItem.ItemDescription}\n" +
-                    $"Item Price: ${menuItem.ItemPrice}");
+                    $"Item Price: ${menuItem.ItemPrice}\n" +
+                    $"Item Ingredients: {menuItem.ItemIngredients}");
             }
             else
             {
@@ -154,9 +156,8 @@ namespace ChallengeOne_Console
             newMenuItem.ItemPrice = double.Parse(itemPrice);
 
             // LIST OF INGREDIENTS
-            //Console.WriteLine("List item ingredient: ");
-            // add a list of strings?
-            // Casting? -- create method video @ 12mins
+            Console.WriteLine("List item ingredient: ");
+            newMenuItem.ItemIngredients = Console.ReadLine().ToLower();
 
             _menuRepo.AddNewMenuItem(newMenuItem);     // adds new item to _menuRepo
         }
@@ -186,9 +187,9 @@ namespace ChallengeOne_Console
         // SEED MENU ITEMS -- needs LIST OF INGREDIENTS
         private void SeedMenuItems()
         {
-            Menu cheeseSandwich = new Menu(3, "Cheese Sandwich", "Bread and choice of cheese", 4.00);
-            Menu chocolateChipCookie = new Menu(4, "Chocolate Chip Cookie", "Homemade chocolate chip cookie", 2.00);
-            Menu croissant = new Menu(6, "Croissant", "French pastry", 3.00);
+            Menu cheeseSandwich = new Menu(3, "Cheese Sandwich", "Bread and choice of cheese", 4.00, "cheese, bread");
+            Menu chocolateChipCookie = new Menu(4, "Chocolate Chip Cookie", "Homemade chocolate chip cookie", 2.00, "flour, chocolate chip, sugar");
+            Menu croissant = new Menu(6, "Croissant", "French pastry", 3.00, "flour, sugar");
 
             _menuRepo.AddNewMenuItem(cheeseSandwich);
             _menuRepo.AddNewMenuItem(chocolateChipCookie);
