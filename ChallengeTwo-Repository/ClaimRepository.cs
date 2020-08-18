@@ -14,7 +14,7 @@ namespace ChallengeTwo_Repository
                4. Modify an existing claim -- UPDATE */
     public class ClaimRepository
     {
-        // _listOfClaimsField
+        // _listOfClaims Field
         private List<Claim> _listOfClaims = new List<Claim>();
 
         // CREATE -- enter new claim

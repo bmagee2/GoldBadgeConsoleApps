@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ChallengeTwo_Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+//using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,9 +10,11 @@ namespace ChallengeTwo_Console
 {
     class ProgramUI
     {
+        // FIELD
+        private ClaimRepository _claimRepo = new ClaimRepository();
         public void Start()
         {
-            //SeedMenuItems();
+            SeedClaims();
             MainMenu();
         }
 
@@ -35,7 +39,7 @@ namespace ChallengeTwo_Console
                 {
                     case "1":
                         // Get all claims
-                       
+                        DisplayAllClaims();
                         Console.WriteLine("Press any key to continue");
                         Console.ReadKey();
                         Console.Clear();
@@ -74,6 +78,43 @@ namespace ChallengeTwo_Console
                 }
 
             }
+        }
+
+        // DISPLAY ALL CLAIMS -- Id(int), Type(emun), Description(string), Amount(double), DateOfIncident(DateTime), DateOfClaim(DateTime), isValid(bool)
+        private void DisplayAllClaims()
+        {
+            Console.Clear();
+            List<Claim> listOfClaims = _claimRepo.GetAllClaims();
+
+            foreach (Claim claim in listOfClaims)
+            {
+                Console.WriteLine($"Claim Id: {claim.ClaimId}\n" +
+                    $"Claim Type: {claim.TypeOfClaim} \n" +
+                    $"Claim Description: {claim.ClaimDescription}\n" +
+                    $"Claim Amount: {claim.ClaimAmount}\n" +
+                    $"Date of Incident: {claim.DateOfIncident}\n" +
+                    $"Date of Claim: {claim.DateOfClaim}\n" +
+                    $"Is the claim valid: {claim.ClaimIsValid}");
+            }
+
+        }
+
+
+        // 
+
+        // UPDATE CLAIM
+
+
+        // SEED CLAIMS -- Id(int), Type(emun), Description(string), Amount(double), DateOfIncident(DateTime), DateOfClaim(DateTime), isValid(bool)
+        private void SeedClaims()
+        {
+            Claim claimOne = new Claim(1, ClaimType.Car, "broken window", 1000.00, DateTime.Now, DateTime.Now, true);
+            Claim claimTwo = new Claim(2, ClaimType.Home, "attacked by chipmunks", 3000.00, DateTime.Now, DateTime.Now, false);
+            Claim claimThree = new Claim(3, ClaimType.Theft, "stolen car", 10000.00, DateTime.Now, DateTime.Now, true);
+
+            _claimRepo.AddNewClaim(claimOne);
+            _claimRepo.AddNewClaim(claimTwo);
+            _claimRepo.AddNewClaim(claimThree);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace ChallengeTwo_Repository
         }
 
         // PROPERTIES of claim -- Id(int), Type(emun), Description(string), Amount(double), DateOfIncident(DateTime), DateOfClaim(DateTime), isValid(bool)
-        public int ClaimId { get; set; } // need setter? look at Vehicle example
+        public int ClaimId { get; set; } // need setter? look at example
         public ClaimType TypeOfClaim { get; set; }
         public string ClaimDescription { get; set; }
         public double ClaimAmount { get; set; }
