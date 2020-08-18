@@ -17,13 +17,13 @@ namespace ChallengeTwo_Repository
         // _listOfClaims Field
         private List<Claim> _listOfClaims = new List<Claim>();
 
-        // CREATE -- enter new claim
+        // 3. CREATE -- enter new claim
         public void AddNewClaim(Claim newClaim)
         {
             _listOfClaims.Add(newClaim);
         }
 
-        // GET -- see all claims
+        // 1. GET -- see all claims
         public List<Claim> GetAllClaims()
         {
             return _listOfClaims;
@@ -31,7 +31,46 @@ namespace ChallengeTwo_Repository
 
         // GET -- get next claim
 
+        // GET -- one claim by ID
+        public Claim GetClaimByIdNumber(int claimIdNumber)
+        {
+            foreach (Claim claim in _listOfClaims)
+            {
+                if (claim.ClaimId == claimIdNumber)
+                {
+                    return claim;
+                }
+            }
 
-        // UPDATE -- modify existing claim
+            return null;
+        }
+
+
+        // 4. UPDATE -- modify existing claim
+        public void UpdateExistingClaim(int originalClaim, Claim newClaim)
+        {
+            // Find original claim
+            Claim oldClaim = GetClaimByIdNumber(originalClaim);
+
+            // Update claim
+            if (oldClaim != null)
+            {
+                // assigning newClaim value to oldClaim value
+                oldClaim.ClaimId = newClaim.ClaimId;
+                oldClaim.TypeOfClaim = newClaim.TypeOfClaim;
+                oldClaim.ClaimDescription = newClaim.ClaimDescription;
+                oldClaim.ClaimAmount = newClaim.ClaimAmount;
+                oldClaim.DateOfIncident = newClaim.DateOfIncident;
+                oldClaim.DateOfClaim = newClaim.DateOfClaim;
+                oldClaim.ClaimIsValid = newClaim.ClaimIsValid;
+
+                Console.WriteLine("Claim was updated successfully");
+            }
+            else
+            {
+                Console.WriteLine("Claim was not updated.");
+            }
+        }
+
     }
 }

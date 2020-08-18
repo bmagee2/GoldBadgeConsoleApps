@@ -80,7 +80,7 @@ namespace ChallengeTwo_Console
             }
         }
 
-        // DISPLAY ALL CLAIMS -- Id(int), Type(emun), Description(string), Amount(double), DateOfIncident(DateTime), DateOfClaim(DateTime), isValid(bool)
+        // 1. DISPLAY ALL CLAIMS -- Id(int), Type(emun), Description(string), Amount(double), DateOfIncident(DateTime), DateOfClaim(DateTime), isValid(bool)
         private void DisplayAllClaims()
         {
             Console.Clear();
@@ -91,7 +91,7 @@ namespace ChallengeTwo_Console
                 Console.WriteLine($"Claim Id: {claim.ClaimId}\n" +
                     $"Claim Type: {claim.TypeOfClaim} \n" +
                     $"Claim Description: {claim.ClaimDescription}\n" +
-                    $"Claim Amount: {claim.ClaimAmount}\n" +
+                    $"Claim Amount: ${claim.ClaimAmount}\n" +
                     $"Date of Incident: {claim.DateOfIncident}\n" +
                     $"Date of Claim: {claim.DateOfClaim}\n" +
                     $"Is the claim valid: {claim.ClaimIsValid}");
@@ -100,9 +100,81 @@ namespace ChallengeTwo_Console
         }
 
 
-        // 
+        // 3. ADD NEW CLAIM
+        private void AddNewClaim()
+        {
+            Console.Clear();
+            // Reference to ClaimRepository
+            Claim newClaim = new Claim();
 
-        // UPDATE CLAIM
+            // ID
+            Console.WriteLine("Claim Id:");
+            string claimId = Console.ReadLine();
+            newClaim.ClaimId = int.Parse(claimId);
+
+            // TYPE
+            Console.WriteLine("Claim type:\n" +
+                "1. Car\n" +
+                "2. Home\n" +
+                "3. Theft");
+
+            string claimType = Console.ReadLine();
+            int claimTypeSelection = int.Parse(claimType);
+            newClaim.TypeOfClaim = (ClaimType)claimTypeSelection;
+            
+
+            // DESCRIPTION
+            Console.WriteLine("Claim description:");
+            string claimDescription = Console.ReadLine();
+
+            // AMOUNT
+            Console.WriteLine("Claim amount:");
+            string claimAmount = Console.ReadLine();
+            newClaim.ClaimAmount = double.Parse(claimAmount);
+
+            // DATE OF INCIDENT
+            Console.WriteLine("Date of incident:");
+
+            // DATE OF CLAIM
+            Console.WriteLine("Date of claim:");
+
+            // IS VALID?
+            Console.WriteLine("Is the claim valid(True/False)?:");
+            string isClaimValid = Console.ReadLine().ToLower();
+
+            if (isClaimValid == "True")
+            {
+                newClaim.ClaimIsValid = true;
+            }
+            else
+            {
+                newClaim.ClaimIsValid = false;
+            }
+        }
+
+
+        // 4. UPDATE CLAIM
+        private void UpdateExistingClaim()
+        {
+            // Reference to ClaimRepository
+            Claim newClaim = new Claim();
+
+            // Display all claims
+            DisplayAllClaims();
+
+            // User input- get claim by ID
+            Console.WriteLine("Enter claim ID to update:");
+
+            // Get claim
+            //string itemNumber = Console.ReadLine();
+            //newMenuItem.ItemNumber = int.Parse(itemNumber);
+            string oldClaim = Console.ReadLine();
+            newClaim.ClaimId = int.Parse(oldClaim);
+
+            // Update = AddNewClaim
+
+        }
+
 
 
         // SEED CLAIMS -- Id(int), Type(emun), Description(string), Amount(double), DateOfIncident(DateTime), DateOfClaim(DateTime), isValid(bool)
