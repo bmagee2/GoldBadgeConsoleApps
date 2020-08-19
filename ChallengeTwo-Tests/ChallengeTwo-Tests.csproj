@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2F021A02-1F1F-41ED-BB50-4A8FADC5C4E4}</ProjectGuid>
+    <ProjectGuid>{318CDC53-5C40-49AB-ABE5-1719965BC687}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChallengeThree_Tests</RootNamespace>
-    <AssemblyName>ChallengeThree-Tests</AssemblyName>
+    <RootNamespace>ChallengeTwo_Tests</RootNamespace>
+    <AssemblyName>ChallengeTwo-Tests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -49,7 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BadgeRepositoryTests.cs" />
+    <Compile Include="ClaimRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

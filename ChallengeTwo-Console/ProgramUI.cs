@@ -5,6 +5,7 @@ using System.Linq;
 //using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using static ChallengeTwo_Repository.Claim;
 
 namespace ChallengeTwo_Console
 {
@@ -12,6 +13,7 @@ namespace ChallengeTwo_Console
     {
         // FIELD
         private ClaimRepository _claimRepo = new ClaimRepository();
+        public Queue<Claim> claimQueue = new Queue<Claim>();
         public void Start()
         {
             SeedClaims();
@@ -45,8 +47,8 @@ namespace ChallengeTwo_Console
                         Console.Clear();
                         break;
                     case "2":
-                        // Get next claim
-                       
+                        // Get next claim -- <QUEUE>
+                        GetNextClaim();
                         Console.WriteLine("Press any key to continue");
                         Console.ReadKey();
                         Console.Clear();
@@ -84,7 +86,7 @@ namespace ChallengeTwo_Console
         private void DisplayAllClaims()
         {
             Console.Clear();
-            List<Claim> listOfClaims = _claimRepo.GetAllClaims();
+            Queue<Claim> listOfClaims = _claimRepo.GetAllClaims();
 
             foreach (Claim claim in listOfClaims)
             {
@@ -92,12 +94,88 @@ namespace ChallengeTwo_Console
                     $"Claim Type: {claim.TypeOfClaim} \n" +
                     $"Claim Description: {claim.ClaimDescription}\n" +
                     $"Claim Amount: ${claim.ClaimAmount}\n" +
-                    $"Date of Incident: {claim.DateOfIncident}\n" +
-                    $"Date of Claim: {claim.DateOfClaim}\n" +
+                    $"Date of Incident: {claim.DateOfIncident.ToShortDateString()}\n" +
+                    $"Date of Claim: {claim.DateOfClaim.ToShortDateString()}\n" +
                     $"Is the claim valid: {claim.ClaimIsValid}");
             }
 
         }
+
+        // 2. GET NEXT CLAIM IN QUEUE
+        //private void GetNextClaim()
+        //{
+        //    Queue<Claim> queueOfClaims = _claimRepo.GetAllClaims();
+        //    bool queueWorking = true;
+        //    while (queueWorking)
+        //    {
+        //        if (queueOfClaims.Count > 0)
+        //        {
+        //            var next = queueOfClaims.Peek();
+        //            DisplayOneClaim(next);
+        //        }
+        //        Console.WriteLine("Do you want to deal with this claim now(y/n)?");
+        //        string userInput = Console.ReadLine();
+        //        if (userInput == "y")
+        //        {
+        //            queueOfClaims.Dequeue();
+        //        }
+        //        else if (userInput == "n")
+        //        {
+        //            queueWorking = false;
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("invaild.");
+        //        }
+        //    }
+        //}
+
+        // 2. GET NEXT CLAIM IN QUEUE
+        //private void DisplayClaimsQueue()
+        //{
+        //    Queue<Claim> queueOfClaims = _claimRepo.GetClaimsQueue();
+
+        //    foreach (Claim claim in queueOfClaims)
+        //    {
+        //        Console.WriteLine($"Claim Id: {claim.ClaimId}\n" +
+        //            $"Claim Type: {claim.TypeOfClaim} \n" +
+        //            $"Claim Description: {claim.ClaimDescription}\n" +
+        //            $"Claim Amount: ${claim.ClaimAmount}\n" +
+        //            $"Date of Incident: {claim.DateOfIncident}\n" +
+        //            $"Date of Claim: {claim.DateOfClaim}\n" +
+        //            $"Is the claim valid: {claim.ClaimIsValid}");
+        //    }
+        //}
+
+        // 2. DISPLAY NEXT CLAIM IN QUEUE
+        private void DisplayOneClaim(Claim claim)
+        {
+            Console.WriteLine($"Claim Id: {claim.ClaimId}\n" +
+                    $"Claim Type: {claim.TypeOfClaim} \n" +
+                    $"Claim Description: {claim.ClaimDescription}\n" +
+                    $"Claim Amount: ${claim.ClaimAmount}\n" +
+                    $"Date of Incident: {claim.DateOfIncident.ToShortDateString()}\n" +
+                    $"Date of Claim: {claim.DateOfClaim.ToShortDateString()}\n" +
+                    $"Is the claim valid: {claim.ClaimIsValid}");
+        }
+
+        // 2. GET NEXT CLAIM
+        //private void GetNextClaim()
+        //{
+        //    // User prompt -- Do you want to deal with this claim now(y/n)? y
+        //    string userInput = Console.ReadLine().ToLower();
+        //    switch (userInput)
+        //    {
+        //        case "y": // -- claim will be pulled off the top of the queue
+        //            // new method 
+        //            break;
+        //        case "n": // -- will go back to the main menu
+        //            MainMenu();
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
 
 
         // 3. ADD NEW CLAIM
@@ -134,22 +212,14 @@ namespace ChallengeTwo_Console
 
             // DATE OF INCIDENT
             Console.WriteLine("Date of incident:");
+            string dateOfIncident = Console.ReadLine();
+            DateTime newDateOfIndcident = Convert.ToDateTime(dateOfIncident);
 
             // DATE OF CLAIM
             Console.WriteLine("Date of claim:");
+            string dateOfClaim = Console.ReadLine();
+            DateTime newDateOfClaim = Convert.ToDateTime(dateOfClaim);
 
-            // IS VALID?
-            Console.WriteLine("Is the claim valid(True/False)?:");
-            string isClaimValid = Console.ReadLine().ToLower();
-
-            if (isClaimValid == "true")
-            {
-                newClaim.ClaimIsValid = true;
-            }
-            else
-            {
-                newClaim.ClaimIsValid = false;
-            }
 
             _claimRepo.AddNewClaim(newClaim);   // adds new item to _claimRepo
         }
@@ -172,11 +242,7 @@ namespace ChallengeTwo_Console
             newClaim.ClaimId = int.Parse(oldClaim); // parsed int to string
 
             // Update = AddNewClaim()
-            // ID
-            Console.WriteLine("Claim Id:");
-            string claimId = Console.ReadLine();
-            newClaim.ClaimId = int.Parse(claimId);
-
+            
             // TYPE
             Console.WriteLine("Claim type:\n" +
                 "1. Car\n" +
@@ -199,24 +265,15 @@ namespace ChallengeTwo_Console
 
             // DATE OF INCIDENT
             Console.WriteLine("Date of incident:");
+            string dateOfIncident = Console.ReadLine();
+            DateTime newDateOfIndcident = Convert.ToDateTime(dateOfIncident);
 
             // DATE OF CLAIM
             Console.WriteLine("Date of claim:");
-
-            // IS VALID?
-            Console.WriteLine("Is the claim valid(True/False)?:");
-            string isClaimValid = Console.ReadLine().ToLower();
-
-            if (isClaimValid == "True")
-            {
-                newClaim.ClaimIsValid = true;
-            }
-            else
-            {
-                newClaim.ClaimIsValid = false;
-            }
+            string dateOfClaim = Console.ReadLine();
+            DateTime newDateOfClaim = Convert.ToDateTime(dateOfClaim);
                                 
-            //_claimRepo.UpdateExistingClaim(, newClaim); // need oldClaim
+            _claimRepo.UpdateExistingClaim(newClaim.ClaimId, newClaim); 
         }
 
 
@@ -224,9 +281,10 @@ namespace ChallengeTwo_Console
         // SEED CLAIMS -- Id(int), Type(emun), Description(string), Amount(double), DateOfIncident(DateTime), DateOfClaim(DateTime), isValid(bool)
         private void SeedClaims()
         {
-            Claim claimOne = new Claim(1, ClaimType.Car, "broken window", 1000.00, DateTime.Now, DateTime.Now, true);
-            Claim claimTwo = new Claim(2, ClaimType.Home, "attacked by chipmunks", 3000.00, DateTime.Now, DateTime.Now, false);
-            Claim claimThree = new Claim(3, ClaimType.Theft, "stolen car", 10000.00, DateTime.Now, DateTime.Now, true);
+            Claim claimOne = new Claim(1, ClaimType.Car, "broken window", 1000.00, new DateTime(1992, 5, 4), new DateTime(1992, 7, 7));
+
+            Claim claimTwo = new Claim(2, ClaimType.Home, "attacked by chipmunks", 3000.00, new DateTime(1992, 7, 4), new DateTime(1992, 7, 7));
+            Claim claimThree = new Claim(3, ClaimType.Theft, "stolen car", 10000.00, new DateTime(1992, 7, 4), new DateTime(1992, 7, 7));
 
             _claimRepo.AddNewClaim(claimOne);
             _claimRepo.AddNewClaim(claimTwo);

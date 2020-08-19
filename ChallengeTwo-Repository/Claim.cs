@@ -11,7 +11,7 @@ namespace ChallengeTwo_Repository
 
         // CONSTRUCTORS
         public Claim() { }
-        public Claim(int claimId, ClaimType typeOfClaim, string claimDescription, double claimAmount, DateTime dateOfIncident, DateTime dateOfClaim, bool claimIsValid)
+        public Claim(int claimId, ClaimType typeOfClaim, string claimDescription, double claimAmount, DateTime dateOfIncident, DateTime dateOfClaim)
         {
             ClaimId = claimId;
             TypeOfClaim = typeOfClaim;
@@ -19,7 +19,7 @@ namespace ChallengeTwo_Repository
             ClaimAmount = claimAmount;
             DateOfIncident = dateOfIncident;
             DateOfClaim = dateOfClaim;
-            ClaimIsValid = claimIsValid;
+            //ClaimIsValid = claimIsValid;
         }
 
         // PROPERTIES of claim -- Id(int), Type(emun), Description(string), Amount(double), DateOfIncident(DateTime), DateOfClaim(DateTime), isValid(bool)
@@ -27,15 +27,30 @@ namespace ChallengeTwo_Repository
         public ClaimType TypeOfClaim { get; set; }
         public string ClaimDescription { get; set; }
         public double ClaimAmount { get; set; }
-        public DateTime DateOfIncident { get; set; } // Komodo allows an insurance claim to be made up to 30 days after an incident took place. If the claim is not in the proper time limit, it is not valid.
+        public DateTime DateOfIncident { get; set; }
         public DateTime DateOfClaim { get; set; }
-        public bool ClaimIsValid { get; set; }
-    }
+        public bool ClaimIsValid // Komodo allows an insurance claim to be made up to 30 days after an incident took place. If the claim is not in the proper time limit, it is not valid.
+        {
+            get
+            {
+                int days = ((TimeSpan)(DateOfClaim - DateOfIncident)).Days;
+                Console.WriteLine(days);
+                if (days > 30)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
 
-    public enum ClaimType
-    {
-        Car = 1,
-        Home,
-        Theft
+        public enum ClaimType
+        {
+            Car = 1,
+            Home,
+            Theft
+        }
     }
 }

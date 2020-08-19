@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ChallengeThree_Tests
+namespace ChallengeTwo_Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class ClaimRepositoryTests
     {
         [TestMethod]
         public void TestMethod1()
