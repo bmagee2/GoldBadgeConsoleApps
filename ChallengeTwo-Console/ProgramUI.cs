@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 //using System.Security.Claims;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using static ChallengeTwo_Repository.Claim;
 
@@ -88,15 +89,13 @@ namespace ChallengeTwo_Console
             Console.Clear();
             Queue<Claim> listOfClaims = _claimRepo.GetAllClaims();
 
+            Console.WriteLine($"{"Claim Id",-5} {"Claim Type",-5} {"Claim Description",-22} {"Claim Amount",-7} {"Date of Incident",-18} {"Date of Claim",-18} {"Claim is Valid",-7}");
+            Thread.Sleep(75);
             foreach (Claim claim in listOfClaims)
             {
-                Console.WriteLine($"Claim Id: {claim.ClaimId}\n" +
-                    $"Claim Type: {claim.TypeOfClaim} \n" +
-                    $"Claim Description: {claim.ClaimDescription}\n" +
-                    $"Claim Amount: ${claim.ClaimAmount}\n" +
-                    $"Date of Incident: {claim.DateOfIncident.ToShortDateString()}\n" +
-                    $"Date of Claim: {claim.DateOfClaim.ToShortDateString()}\n" +
-                    $"Is the claim valid: {claim.ClaimIsValid}");
+                Console.WriteLine($"{"Claim Id",-5} {"Claim Type",-5} {"Claim Description",-22} {"Claim Amount",-7} {"Date of Incident",-18} {"Date of Claim",-18} {"Claim is Valid",-7}");
+                Thread.Sleep(75);
+                Console.WriteLine($"{claim.ClaimId,-7} {claim.TypeOfClaim,-5} {claim.ClaimDescription,-22} ${claim.ClaimAmount,-7} {claim.DateOfIncident.ToShortDateString(),-18}{claim.DateOfClaim.ToShortDateString(),-18} {claim.ClaimIsValid,-7}");
             }
 
         }
@@ -150,32 +149,37 @@ namespace ChallengeTwo_Console
         // 2. DISPLAY NEXT CLAIM IN QUEUE
         private void DisplayOneClaim(Claim claim)
         {
-            Console.WriteLine($"Claim Id: {claim.ClaimId}\n" +
-                    $"Claim Type: {claim.TypeOfClaim} \n" +
-                    $"Claim Description: {claim.ClaimDescription}\n" +
-                    $"Claim Amount: ${claim.ClaimAmount}\n" +
-                    $"Date of Incident: {claim.DateOfIncident.ToShortDateString()}\n" +
-                    $"Date of Claim: {claim.DateOfClaim.ToShortDateString()}\n" +
-                    $"Is the claim valid: {claim.ClaimIsValid}");
+            Console.WriteLine($"{"Claim Id", -5} {"Claim Type",-5} {"Claim Description",-22} {"Claim Amount",-7} {"Date of Incident",-18} {"Date of Claim",-18} {"Claim is Valid",-7}");
+            Thread.Sleep(75);
+            Console.WriteLine($"{claim.ClaimId, -7} {claim.TypeOfClaim, -5} {claim.ClaimDescription, -22} ${claim.ClaimAmount, -7} {claim.DateOfIncident.ToShortDateString(), -18}{claim.DateOfClaim.ToShortDateString(), -18} {claim.ClaimIsValid, -7}");
         }
 
-        // 2. GET NEXT CLAIM
-        //private void GetNextClaim()
-        //{
-        //    // User prompt -- Do you want to deal with this claim now(y/n)? y
-        //    string userInput = Console.ReadLine().ToLower();
-        //    switch (userInput)
-        //    {
-        //        case "y": // -- claim will be pulled off the top of the queue
-        //            // new method 
-        //            break;
-        //        case "n": // -- will go back to the main menu
-        //            MainMenu();
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
+         // 2. GET NEXT CLAIM
+        private void GetNextClaim()
+        {
+            // User prompt -- Do you want to deal with this claim now(y/n)? y
+            string userInput = Console.ReadLine().ToLower();
+            switch (userInput)
+            {
+                case "y": // -- claim will be pulled off the top of the queue
+                    GetTopClaim();
+                    break;
+                case "n": // -- will go back to the main menu
+                    MainMenu();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public Claim GetTopClaim()
+        {
+            if (claimQueue.Count > 0)
+            {
+                return claimQueue.Peek();
+            }
+            return null;
+        }
 
 
         // 3. ADD NEW CLAIM
