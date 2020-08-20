@@ -12,15 +12,6 @@ namespace ChallengeOne_Tests
         private MenuRepository _repo;
         private Menu _menu;
 
-        //[TestInitialize]
-        //public void Arrange()
-        //{
-        //    _repo = new StreamingContentRepository();
-        //    _content = new StreamingContent("Clifford", "Dinosaur World", MovieRating.PG13, 10, 1994, Genre.Comedy);
-
-        //    _repo.AddContentToDirectory(_content);
-        //}
-
         [TestInitialize]
         public void Arrange()
         {
@@ -30,22 +21,22 @@ namespace ChallengeOne_Tests
             _repo.AddNewMenuItem(_menu);
         }
 
-        // READ -- GET all items in the menu list
+        // READ 
         [TestMethod]
         public void GetListOfMenuItems_ShouldGetAllMenuItems()    // Should get all menu items
         {
-            // ARRANGE
+            // ARRANGE -- setup
             MenuRepository repo = new MenuRepository();
             Menu newMenu = new Menu(4, "Donut", "Chocolate-dipped", 1.50, "flour, chocolate");
 
             repo.AddNewMenuItem(newMenu);
 
-            // ACT
+            // ACT -- run code we want to test
             List<Menu> menu = repo.GetAllMenuItems();
 
             bool menuHasNewMenu = menu.Contains(newMenu);
 
-            // ASSERT
+            // ASSERT -- verify expected outcome
             Assert.IsTrue(menuHasNewMenu);
         }
 
@@ -62,30 +53,45 @@ namespace ChallengeOne_Tests
         }
 
         // CREATE -- add menu item
-        [TestMethod]
-        public void AddNewMenuItemToList_ShouldAddMenuItem()      // Should add menu item
-        {
-            // ARRANGE
+        //[TestMethod]
+        //public void AddNewMenuItemToList_ShouldAddMenuItem()      // Should add menu item
+        //{
+        //    ARRANGE
 
 
-            // ACT
+        //    ACT
 
-            // ASSERT
-        }
+        //     ASSERT
+        //}
 
         // DELETE -- delete menu item
         [TestMethod]
-        public void DeleteMenuItem_ShouldReturnTrue()            // Should return true
+        public void DeleteMenuItemByName_ShouldReturnTrue()            // Should return true
         {
             // Arrange
             // this will be replaced with our [TestInitialize] method
-            // Arrange()
+            Arrange();
 
             // Act
-            //bool delete = _repo.DeleteExistingContent(_content);
+            bool delete = _repo.DeleteMenuItem("Donut");
 
             // Assert
-            //Assert.IsTrue(delete);
+            Assert.IsTrue(delete);
+        }
+
+        [DataTestMethod]
+        [DataRow("Donut", true)]
+        public void DeleteByName_ShouldReturnTrue(string menuItem, bool expectedResult)
+        {
+            // Arrange
+            // this will be replaced with our [TestInitialize] method
+            Arrange();
+
+            // Act
+            bool actualResult = _repo.DeleteMenuItem("Donut");
+
+            // Assert
+            Assert.AreEqual(expectedResult, actualResult);
         }
     }
 }
