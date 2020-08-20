@@ -49,6 +49,7 @@ namespace ChallengeTwo_Console
                         break;
                     case "2":
                         // Get next claim -- <QUEUE>
+                        //DisplayClaimsQueue();
                         GetNextClaim();
                         Console.WriteLine("Press any key to continue");
                         Console.ReadKey();
@@ -101,33 +102,33 @@ namespace ChallengeTwo_Console
         }
 
         // 2. GET NEXT CLAIM IN QUEUE
-        //private void GetNextClaim()
-        //{
-        //    Queue<Claim> queueOfClaims = _claimRepo.GetAllClaims();
-        //    bool queueWorking = true;
-        //    while (queueWorking)
-        //    {
-        //        if (queueOfClaims.Count > 0)
-        //        {
-        //            var next = queueOfClaims.Peek();
-        //            DisplayOneClaim(next);
-        //        }
-        //        Console.WriteLine("Do you want to deal with this claim now(y/n)?");
-        //        string userInput = Console.ReadLine();
-        //        if (userInput == "y")
-        //        {
-        //            queueOfClaims.Dequeue();
-        //        }
-        //        else if (userInput == "n")
-        //        {
-        //            queueWorking = false;
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("invaild.");
-        //        }
-        //    }
-        //}
+        private void GetNextClaim()
+        {
+            Queue<Claim> queueOfClaims = _claimRepo.GetAllClaims();
+            bool queueWorking = true;
+            while (queueWorking)
+            {
+                if (queueOfClaims.Count > 0)
+                {
+                    var next = queueOfClaims.Peek();
+                    DisplayOneClaim(next);
+                }
+                Console.WriteLine("Do you want to deal with this claim now(y/n)?");
+                string userInput = Console.ReadLine();
+                if (userInput == "y")
+                {
+                    queueOfClaims.Dequeue();
+                }
+                else if (userInput == "n")
+                {
+                    queueWorking = false;
+                }
+                else
+                {
+                    Console.WriteLine("invaild.");
+                }
+            }
+        }
 
         // 2. GET NEXT CLAIM IN QUEUE
         //private void DisplayClaimsQueue()
@@ -144,42 +145,42 @@ namespace ChallengeTwo_Console
         //            $"Date of Claim: {claim.DateOfClaim}\n" +
         //            $"Is the claim valid: {claim.ClaimIsValid}");
         //    }
+        //    GetNextClaim();
         //}
 
-        // 2. DISPLAY NEXT CLAIM IN QUEUE
+        //// 2. DISPLAY NEXT CLAIM IN QUEUE
         private void DisplayOneClaim(Claim claim)
         {
-            Console.WriteLine($"{"Claim Id", -5} {"Claim Type",-5} {"Claim Description",-22} {"Claim Amount",-7} {"Date of Incident",-18} {"Date of Claim",-18} {"Claim is Valid",-7}");
+            Console.WriteLine($"{"Claim Id",-5} {"Claim Type",-5} {"Claim Description",-22} {"Claim Amount",-7} {"Date of Incident",-18} {"Date of Claim",-18} {"Claim is Valid",-7}");
             Thread.Sleep(75);
-            Console.WriteLine($"{claim.ClaimId, -7} {claim.TypeOfClaim, -5} {claim.ClaimDescription, -22} ${claim.ClaimAmount, -7} {claim.DateOfIncident.ToShortDateString(), -18}{claim.DateOfClaim.ToShortDateString(), -18} {claim.ClaimIsValid, -7}");
+            Console.WriteLine($"{claim.ClaimId,-7} {claim.TypeOfClaim,-5} {claim.ClaimDescription,-22} ${claim.ClaimAmount,-7} {claim.DateOfIncident.ToShortDateString(),-18}{claim.DateOfClaim.ToShortDateString(),-18} {claim.ClaimIsValid,-7}");
+        
         }
 
-         // 2. GET NEXT CLAIM
-        private void GetNextClaim()
-        {
-            // User prompt -- Do you want to deal with this claim now(y/n)? y
-            string userInput = Console.ReadLine().ToLower();
-            switch (userInput)
-            {
-                case "y": // -- claim will be pulled off the top of the queue
-                    GetTopClaim();
-                    break;
-                case "n": // -- will go back to the main menu
-                    MainMenu();
-                    break;
-                default:
-                    break;
-            }
-        }
+        // // 2. GET NEXT CLAIM
+        //private void GetNextClaim()
+        //{
+        //   
+        //    {
+        //        case "y": // -- claim will be pulled off the top of the queue
+        //            GetTopClaim();
+        //            break;
+        //        case "n": // -- will go back to the main menu
+        //            MainMenu();
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
 
-        public Claim GetTopClaim()
-        {
-            if (claimQueue.Count > 0)
-            {
-                return claimQueue.Peek();
-            }
-            return null;
-        }
+        //public Claim GetTopClaim()
+        //{
+        //    if (claimQueue.Count > 0)
+        //    {
+        //        return claimQueue.Peek();
+        //    }
+        //    return null;
+        //}
 
 
         // 3. ADD NEW CLAIM

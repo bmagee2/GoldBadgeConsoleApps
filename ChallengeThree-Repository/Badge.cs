@@ -8,24 +8,30 @@ namespace ChallengeThree_Repository
 {
     public class Badge
     {
-        // Dictionary
-        //Dictionary<int, string> keyAndValue = new Dictionary<int, string>();
-        //keyAndValue.Add("Teacher", "Joshua");
-        //Console.WriteLine("your instructor is " + keyAndValue["Teacher"]);
 
         // CONSTRUCTORS 
         public Badge() { }
-        public Badge(int badgeId, string badgeName)
+        public Badge(int badgeId, List<string> doorNames)
         {
             BadgeId = badgeId;
-            // List or string
-            BadgeName = badgeName;
+            DoorNames = doorNames;
+            
         }
 
-        // PROPERTIES -- BadgeID (int), List of door names (strings), name for the badge
+        // PROPERTIES -- BadgeID (int), List of door names 
         public int BadgeId { get; set; }
-        // List or string
-        public string BadgeName { get; set; }
+        //public List<DoorNamesForAccess> DoorNames { get; set; }
+        public List<string> DoorNames { get; set; }
 
     }
+
+    //public class DoorNamesForAccess
+    //{
+    //    public DoorNamesForAccess(string doorName)
+    //    {
+    //        DoorName = doorName;
+    //    }
+    //    public string DoorName { get; set; }
+    //}
+
 }
