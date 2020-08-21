@@ -52,17 +52,7 @@ namespace ChallengeOne_Tests
             // ASSERT
         }
 
-        // CREATE -- add menu item
-        //[TestMethod]
-        //public void AddNewMenuItemToList_ShouldAddMenuItem()      // Should add menu item
-        //{
-        //    ARRANGE
-
-
-        //    ACT
-
-        //     ASSERT
-        //}
+        
 
         // DELETE -- delete menu item
         [TestMethod]

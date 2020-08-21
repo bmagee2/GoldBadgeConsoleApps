@@ -53,7 +53,7 @@ namespace ChallengeThree_Repository
 
 
         // 
-        public bool HasKey(int key)
+        public bool GotsTheKey(int key)
         {
             bool validKey = _badgeRepository.ContainsKey(key);
             if (validKey)

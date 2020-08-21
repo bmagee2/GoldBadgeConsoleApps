@@ -41,34 +41,7 @@ namespace ChallengeTwo_Tests
             Assert.IsTrue(claimHasNewClaim);
         }
 
-        // DELETE -- delete menu item
-        //[TestMethod]
-        //public void DeleteMenuItemByName_ShouldReturnTrue()            // Should return true
-        //{
-        //    // Arrange
-        //    // this will be replaced with our [TestInitialize] method
-        //    Arrange();
-
-        //    // Act
-        //    bool delete = _repo.DeleteMenuItem("Donut");
-
-        //    // Assert
-        //    Assert.IsTrue(delete);
-        //}
-
-        //[DataTestMethod]
-        //[DataRow("Donut", true)]
-        //public void DeleteByName_ShouldReturnTrue(string menuItem, bool expectedResult)
-        //{
-        //    // Arrange
-        //    // this will be replaced with our [TestInitialize] method
-        //    Arrange();
-
-        //    // Act
-        //    bool actualResult = _repo.DeleteMenuItem("Donut");
-
-        //    // Assert
-        //    Assert.AreEqual(expectedResult, actualResult);
-        //}
+       
+        }
     }
 }

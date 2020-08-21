@@ -40,14 +40,14 @@ namespace ChallengeThree_Console
                 {
                     case "1":
                         // Add badge
-
+                        AddBadge();
                         Console.WriteLine("Press any key to continue");
                         Console.ReadKey();
                         Console.Clear();
                         break;
                     case "2":
                         // Edit a badge
-
+                        EditBadge();
                         Console.WriteLine("Press any key to continue");
                         Console.ReadKey();
                         Console.Clear();
@@ -68,21 +68,106 @@ namespace ChallengeThree_Console
                         break;
                     default:
                         Console.WriteLine("Enter valid option");
+                        Console.ReadKey();
                         break;
                 }
 
             }
         }
 
-
         // 1. ADD BADGE
-        
+        public void AddBadge()
+        {
+            Console.Clear();
+            Console.WriteLine("Badge number: ");
+            int badgeId = Convert.ToInt32(Console.ReadLine());
 
-        // 2. EDIT BADGE
+            _badgeRepo.AddNewBadge(badgeId);
+            AddDoor(badgeId);
+
+            bool running = true;
+            while (running)
+            {
+                Console.WriteLine("Any other doors(yes/no)?");
+                string response = Console.ReadLine().ToLower();
+                switch (response)
+                {
+                    case "yes":
+                        AddDoor(badgeId);
+                        break;
+                    case "no":
+                        Console.WriteLine("Press any key to return to menu");
+                        Console.Clear();
+                        MainMenu();
+                        break;
+                    default:
+                        Console.WriteLine("Enter valid option");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+
+        }
+
+        public void AddDoor(int badgeId)
+        {
+            Console.WriteLine("What door does it need to access: ");
+            string addDoor = Console.ReadLine();
+
+            _badgeRepo.AddDoor(badgeId, addDoor);
+        }
+
+        // 2. EDIT BADGE -- Remove a door & Add a door
+       public void EditBadge()
+        {
+            Console.Clear();
+            Console.WriteLine("What is the badge number to update?");
+            int badgeId = Convert.ToInt32(Console.ReadLine());
+
+            if (_badgeRepo.GotsTheKey(badgeId))
+            {
+                bool running = true;
+                while (running)
+                {
+                    Console.WriteLine("1. Add door\n" +
+                        "2. Delete door\n" +
+                        "3. Delete all doors\n" +
+                        "4. Return to menu");
+
+                    string response = Console.ReadLine();
+                    switch (response)
+                    {
+                        case "1":
+                            AddDoor(badgeId);
+                            Console.WriteLine("Door added successfully. Press any key to continue.");
+                            Console.ReadKey();
+                            break;
+                        case "2":
+                            Console.WriteLine("");
+                            //
+                            break;
+                        case "3":
+                            _badgeRepo.DeleteAllDoors(badgeId);
+                            Console.WriteLine("Doors deleted");
+                            Console.ReadKey();
+                            break;
+                        case "4":
+                            running = false;
+                            break;
+                        default:
+                            Console.WriteLine("not valid option");
+                            break;
+                    }
+                } 
+            }
+        }
+
+
+
 
 
         // 3. DISPLAY ALL BADGES
-      
+
         private void ShowAllBadges()
         {
             Console.Clear();
