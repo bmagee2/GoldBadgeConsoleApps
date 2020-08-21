@@ -1,22 +1,21 @@
-﻿using System;
-using ChallengeThree_Repository;
+﻿using ChallengeThree_Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ChallengeThree_Repository.Badge;
 
 namespace ChallengeThree_Console
 {
-    class ProgramUI
+    public class ProgramUI
     {
-        // FIELD
-        private BadgeRepository badgeRepository = new BadgeRepository();
-
-        //private ClaimRepository _claimRepo = new ClaimRepository();
-        //public Queue<Claim> claimQueue = new Queue<Claim>();
+        private BadgeRepository _badgeRepo = new BadgeRepository();
+        public Dictionary<int, List<string>> badgeDictionary = new Dictionary<int, List<string>>();
+       
         public void Start()
         {
-            //SeedBadges();
+            _badgeRepo.SeedBadges();
             MainMenu();
         }
 
@@ -55,7 +54,7 @@ namespace ChallengeThree_Console
                         break;
                     case "3":
                         // List all badges
-
+                        ShowAllBadges();
                         Console.WriteLine("Press any key to continue");
                         Console.ReadKey();
                         Console.Clear();
@@ -77,18 +76,28 @@ namespace ChallengeThree_Console
 
 
         // 1. ADD BADGE
-
+        
 
         // 2. EDIT BADGE
 
 
         // 3. DISPLAY ALL BADGES
-
-
-        // SEED BADGES -- BadgeID (int), List of door names 
-        private void SeedBadges()
+      
+        private void ShowAllBadges()
         {
-            Badge badgeOne = new Badge(1, new List<>);
+            Console.Clear();
+            Dictionary<int, List<string>> listOfBadges = _badgeRepo.ShowListOfBadges();
+
+            foreach (KeyValuePair<int, List<string>> badge in listOfBadges)
+            {
+                int ShowBadgeKey = badge.Key;
+                foreach (string door in badge.Value)
+                {
+                    string showDoor = door;
+                    Console.WriteLine(ShowBadgeKey);
+                    Console.WriteLine(showDoor);
+                }
+            }
         }
 
 

@@ -71,7 +71,7 @@ namespace ChallengeOne_Console
                         break;
                     case "5":
                         // Exit
-                        Console.WriteLine("bitch, bye");
+                        Console.WriteLine("bye");
                         Console.WriteLine("Press any key to exit");
                         Console.ReadKey();
                         running = false;
