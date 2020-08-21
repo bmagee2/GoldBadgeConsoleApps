@@ -4,8 +4,7 @@
 
 ## Challenge 1
 
-###Challenge 1: Cafe
-Komodo Cafe
+### Komodo Cafe
 
 Komodo cafe is getting a new menu. The manager wants to be able to create new menu items, update menu items, delete menu items, and receive a list of all items on the cafe's menu. She needs a console app.
 
@@ -14,7 +13,7 @@ Komodo cafe is getting a new menu. The manager wants to be able to create new me
 
 ## Challenge 2
 
-###Komodo Claims Department
+### Komodo Claims Department
 
 Komodo has a bug in its software and needs some new code.
 
@@ -22,7 +21,7 @@ Komodo has a bug in its software and needs some new code.
 
 ## Challenge 3
 
-###Komodo Insurance
+### Komodo Insurance
 
 Komodo Insurance is fixing their badging system.
 
