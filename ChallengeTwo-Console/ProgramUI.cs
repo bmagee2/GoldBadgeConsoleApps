@@ -113,13 +113,13 @@ namespace ChallengeTwo_Console
                     var next = queueOfClaims.Peek();
                     DisplayOneClaim(next);
                 }
-                Console.WriteLine("Do you want to deal with this claim now(y/n)?");
+                Console.WriteLine("Do you want to deal with this claim now(yes/no)?");
                 string userInput = Console.ReadLine();
-                if (userInput == "y")
+                if (userInput == "yes")
                 {
                     queueOfClaims.Dequeue();
                 }
-                else if (userInput == "n")
+                else if (userInput == "no")
                 {
                     queueWorking = false;
                 }
@@ -130,23 +130,7 @@ namespace ChallengeTwo_Console
             }
         }
 
-        // 2. GET NEXT CLAIM IN QUEUE
-        //private void DisplayClaimsQueue()
-        //{
-        //    Queue<Claim> queueOfClaims = _claimRepo.GetClaimsQueue();
-
-        //    foreach (Claim claim in queueOfClaims)
-        //    {
-        //        Console.WriteLine($"Claim Id: {claim.ClaimId}\n" +
-        //            $"Claim Type: {claim.TypeOfClaim} \n" +
-        //            $"Claim Description: {claim.ClaimDescription}\n" +
-        //            $"Claim Amount: ${claim.ClaimAmount}\n" +
-        //            $"Date of Incident: {claim.DateOfIncident}\n" +
-        //            $"Date of Claim: {claim.DateOfClaim}\n" +
-        //            $"Is the claim valid: {claim.ClaimIsValid}");
-        //    }
-        //    GetNextClaim();
-        //}
+  
 
         //// 2. DISPLAY NEXT CLAIM IN QUEUE
         private void DisplayOneClaim(Claim claim)
@@ -157,31 +141,7 @@ namespace ChallengeTwo_Console
         
         }
 
-        // // 2. GET NEXT CLAIM
-        //private void GetNextClaim()
-        //{
-        //   
-        //    {
-        //        case "y": // -- claim will be pulled off the top of the queue
-        //            GetTopClaim();
-        //            break;
-        //        case "n": // -- will go back to the main menu
-        //            MainMenu();
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
-
-        //public Claim GetTopClaim()
-        //{
-        //    if (claimQueue.Count > 0)
-        //    {
-        //        return claimQueue.Peek();
-        //    }
-        //    return null;
-        //}
-
+    
 
         // 3. ADD NEW CLAIM
         private void AddNewClaim()
