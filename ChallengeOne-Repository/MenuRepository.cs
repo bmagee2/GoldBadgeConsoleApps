@@ -41,7 +41,7 @@ namespace ChallengeOne_Repository
         }
 
         // DELETE -- delete menu item
-        public bool DeleteMenuItem(string itemName) // OR (Menu menuItem)
+        public bool DeleteMenuItem(string itemName)
         {
             Menu item = GetMenuItemByName(itemName);
             if (item == null)

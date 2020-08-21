@@ -90,8 +90,6 @@ namespace ChallengeTwo_Console
             Console.Clear();
             Queue<Claim> listOfClaims = _claimRepo.GetAllClaims();
 
-            //Console.WriteLine($"{"Claim Id",-5} {"Claim Type",-5} {"Claim Description",-22} {"Claim Amount",-7} {"Date of Incident",-18} {"Date of Claim",-18} {"Claim is Valid",-7}");
-            //Thread.Sleep(75);
             foreach (Claim claim in listOfClaims)
             {
                 Console.WriteLine($"{"Claim Id",-5} {"Claim Type",-5} {"Claim Description",-22} {"Claim Amount",-7} {"Date of Incident",-18} {"Date of Claim",-18} {"Claim is Valid",-7}");
