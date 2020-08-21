@@ -143,12 +143,16 @@ namespace ChallengeThree_Console
                             Console.ReadKey();
                             break;
                         case "2":
-                            Console.WriteLine("");
-                            //
+                            Console.WriteLine("Which door do you want to remove? ");
+                            _badgeRepo.GetBadgeById(badgeId);
+                            string doorDelete = Console.ReadLine();
+                            _badgeRepo.DeleteOneDoor(badgeId, doorDelete);
+                            Console.WriteLine("Door deleted successfully");
+                            Console.ReadKey();
                             break;
                         case "3":
                             _badgeRepo.DeleteAllDoors(badgeId);
-                            Console.WriteLine("Doors deleted");
+                            Console.WriteLine("All doors deleted");
                             Console.ReadKey();
                             break;
                         case "4":
